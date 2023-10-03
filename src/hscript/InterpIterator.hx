@@ -1,7 +1,7 @@
-package haxescript;
+package hscript;
 
 @:keepSub
-@:access(haxescript.Interp)
+@:access(hscript.Interp)
 class InterpIterator 
 {
 	public var min:Int;

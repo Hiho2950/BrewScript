@@ -1,4 +1,4 @@
-package haxescript;
+package hscript;
 
 #if macro
 import haxe.macro.Context;
@@ -7,7 +7,7 @@ import haxe.macro.TypeTools;
 
 class ClassTools
 {
-    static final thisName:String = 'haxescript.ClassTools';
+    static final thisName:String = 'hscript.ClassTools';
 
     macro static function build() 
     {

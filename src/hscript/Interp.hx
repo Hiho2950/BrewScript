@@ -90,6 +90,8 @@ class Interp {
 	var curExpr:Expr;
 	#end
 
+	var specialObject : {obj:Dynamic , ?includeFunctions:Bool , ?exclusions:Array<String>} = {obj : null , includeFunctions: null , exclusions: null };
+
 	public function new() {
 		#if haxe3
 		locals = new Map();
@@ -450,6 +452,12 @@ class Interp {
 					return Reflect.getProperty(scriptObject, 'get_$id')();
 				}
 			}
+		}
+		if( specialObject != null && specialObject.obj != null )
+		{
+		var field = Reflect.getProperty(specialObject.obj,id);
+		if( field != null && (specialObject.includeFunctions || Type.typeof(field) != TFunction) && (specialObject.exclusions == null || !specialObject.exclusions.contains(id)) )
+			return field;
 		}
 		if (doException)
 			error(EUnknownVariable(id));

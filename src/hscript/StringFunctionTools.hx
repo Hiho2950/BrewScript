@@ -1,4 +1,4 @@
-package haxescript;
+package hscript;
 
 import haxe.Constraints;
 
