@@ -34,6 +34,7 @@ import haxe.display.Protocol.InitializeResult;
 import haxe.PosInfos;
 import hscript.Expr;
 import haxe.Constraints.IMap;
+import brew.BrewScript;
 
 using StringTools;
 
@@ -43,6 +44,9 @@ private enum Stop {
 	SReturn;
 }
 
+@:keepSub
+@:access(hscript.Tools)
+@:access(brew.BrewScript)
 class Interp {
 	public var scriptObject(default, set):Dynamic;
 	public function set_scriptObject(v:Dynamic) {
@@ -85,10 +89,17 @@ class Interp {
 		// "flixel.FlxG"
 	];
 
+	var script : BrewScript;
+
 	var __instanceFields:Array<String> = [];
 	#if hscriptPos
 	var curExpr:Expr;
 	#end
+
+	public inline function setScr(s)
+    {
+        return script = s;
+    }
 
 	var specialObject : {obj:Dynamic , ?includeFunctions:Bool , ?exclusions:Array<String>} = {obj : null , includeFunctions: null , exclusions: null };
 
